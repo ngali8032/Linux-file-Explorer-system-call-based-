@@ -4,6 +4,7 @@
 
 C | Linux | System Calls | Directory Traversal | File Handling
 
+
 📌 Project Overview
 
 This project is a shell-style interactive file explorer developed in C using Linux system calls.
@@ -25,6 +26,7 @@ exit / quit → Terminate program
 Invalid input handling
 
 The implementation uses low-level system calls to understand how Linux handles filesystem operations internally.
+
 
 🧠 Concepts Used
 
@@ -49,6 +51,7 @@ String parsing & command handling
 Path manipulation
 
 Error handling
+
 
 ⚙️ Supported Commands
 📂 Change Directory
@@ -91,6 +94,7 @@ quit
 
 Terminates the application safely.
 
+
 🖥 Example Session
 Current Path: /home/narendra
 
@@ -105,6 +109,7 @@ Current Path: /home/narendra
 
 > exit
 Program terminated.
+
 🎯 Key Learning Outcomes
 
 ✔ Linux system call usage
@@ -113,6 +118,7 @@ Program terminated.
 ✔ Path parsing and validation
 ✔ Error handling for invalid inputs
 ✔ Building mini-shell style applications
+
 
 🛠 Compile & Run
 gcc file_explorer.c
