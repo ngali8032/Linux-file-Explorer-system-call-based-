@@ -1,22 +1,30 @@
 📁 Remote File Access System using TCP/IP (Single Client)
 
-📌 Project Overview
+🎯 Project Objective
 
-This project implements a single-client TCP/IP based client–server application in C on Linux that enables remote directory navigation and file content retrieval.
+- The main objective of this project was to understand how communication exactly happens between two systems over a network using the TCP/IP protocol.
 
-The system demonstrates practical implementation of:
+- We aimed to gain practical knowledge of:
 
-- TCP/IP Socket Programming
+- How a TCP connection is established using the three-way handshake
 
-- Linux System Calls
+- How data is transmitted reliably between client and server
 
-- File System Navigation
+- How socket-level communication works internally
 
-- Permission Handling
+- How connection termination and disconnection handling are managed
 
-- Command-Based Client Interaction
+- In addition to understanding network communication, we extended the project by implementing remote content retrieval using Linux system calls. This allowed the client to:
 
-- Connection Management
+Navigate directories
+
+List files
+
+Open and read file contents remotely
+
+The server processes client commands received through the recv() function and retrieves file data using Linux system calls such as open(), read(), write(), and close(). After processing the request, the server transmits the response back to the client using the send() function over the established TCP connection.
+
+By combining networking fundamentals with Linux system programming, this project provided hands-on exposure to real-world client–server communication and low-level file handling mechanisms.
 
 🏗 System Architecture
 
@@ -115,15 +123,6 @@ In such cases, the client detects the disconnection and displays:
 Server got disconnected.
 Connection terminated unexpectedly.
 
-This ensures:
-
-Proper user notification
-
-Graceful error handling
-
-Safe resource cleanup
-
-No undefined behavior
 
 📜 Supported Commands
 
