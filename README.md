@@ -1,125 +1,185 @@
-# Linux-file-Explorer-system-call-based-
-
-📂 Linux Mini File Explorer (Shell-Style | System Call Based)
-
-C | Linux | System Calls | Directory Traversal | File Handling
-
+📁 Remote File Access System using TCP/IP (Single Client)
 
 📌 Project Overview
 
-This project is a shell-style interactive file explorer developed in C using Linux system calls.
+This project implements a single-client TCP/IP based client–server application in C on Linux that enables remote directory navigation and file content retrieval.
 
-The program allows users to navigate directories and open files using commands similar to Linux shell.
+The system demonstrates practical implementation of:
 
-It supports:
+- TCP/IP Socket Programming
 
-cd <directory> → Enter directory
+- Linux System Calls
 
-open <filename> → Open and read file
+- File System Navigation
 
-<path> → Navigate directly to path
+- Permission Handling
 
-back → Move to parent directory
+- Command-Based Client Interaction
 
-exit / quit → Terminate program
+- Connection Management
 
-Invalid input handling
+🏗 System Architecture
+🔹 Server
 
-The implementation uses low-level system calls to understand how Linux handles filesystem operations internally.
+- The server starts first and waits for incoming client connections.
 
+- It binds to a specific IP address and port number.
 
-🧠 Concepts Used
+- Using socket(), bind(), listen(), and accept(), the server establishes a TCP connection.
 
-This project demonstrates practical usage of:
+- Once a client connects successfully, the server begins processing commands.
 
-opendir()
+🔹 Client
 
-readdir()
+The client connects using the server’s IP address and port number.
 
-closedir()
+TCP connection is established using the standard three-way handshake mechanism:
 
-open()
+SYN
 
-read()
+SYN-ACK
 
-close()
+ACK
 
-File descriptors
-
-String parsing & command handling
-
-Path manipulation
-
-Error handling
+After successful connection establishment, an interactive command window is displayed for the user.
 
 
-⚙️ Supported Commands
-📂 Change Directory
-cd folder_name
+💻 Working Flow
 
-Moves into specified directory if exists.
-If not found → prints: 
+The server waits for a client to connect.
 
-Invalid directory
-📄 Open File
-open filename.txt
+The client connects using the correct IP address and port number.
 
-Uses:
+After a successful TCP connection, a command interface is opened.
 
-open() to get file descriptor
+Navigation begins from the root directory using:
 
-read() to read content
+cd /
 
-Displays file content in terminal.
+When the client enters a command:
 
-If file not found -> prints:
+- The command is sent to the server.
 
-Invalid file
-📁 path:- shows absolute path
+- The server processes the request.
 
+- The server fetches directory or file data.
 
-Program navigates directly to given path if valid.
+- The response is sent back to the client.
 
-⬅ Go Back
-back
+- The client displays the received output.
 
-Moves to parent directory.
+The client can:
 
-❌ Exit Program
+Change directories using cd <directory_name>
+
+Open and read files using:
+
+open <filename>
+
+The server continues sending file content until reading is complete.
+
+If the user types:
+
+help
+
+A guide is displayed showing all supported commands.
+
+If the user types:
+
 exit
 
 or
 
 quit
 
-Terminates the application safely.
+The connection is gracefully terminated.
+
+🔄 Connection Handling & Error Management
 
 
-🖥 Example Session
-Current Path: /home/narendra
+🔹 Server-Side Technical Issues
 
-> cd Projects
-Current Path: /home/narendra/Projects
+- If the server encounters any technical issue such as:
 
-> open test.txt
-Displaying file content...
+Unexpected crash
 
-> back
-Current Path: /home/narendra
+Manual termination
 
-> exit
-Program terminated.
+Network interruption
 
-🎯 Key Learning Outcomes
+The TCP connection will break automatically.
 
-✔ Linux system call usage
-✔ File descriptor management
-✔ Directory traversal logic
-✔ Path parsing and validation
-✔ Error handling for invalid inputs
-✔ Building mini-shell style applications
+In such cases, the client detects the disconnection and displays:
+
+Server got disconnected.
+Connection terminated unexpectedly.
+
+This ensures:
+
+Proper user notification
+
+Graceful error handling
+
+Safe resource cleanup
+
+No undefined behavior
+
+📜 Supported Commands
+
+- cd / → Move to root directory
+
+- cd <directory_name> → Change directory
+  
+- ls → List directories and files
+  
+- open <filename> → Read file content
+
+- help → Display command guide
+
+- exit / quit → Terminate connection
+
+🛠 Technologies Used
+
+-C Programming
+
+-Linux Operating System
+
+-TCP/IP Socket Programming
+
+-Linux System Calls 
+
+-Permission and Error Management
+
+🎯 Learning Outcomes
+
+- Through this project, I strengthened my understanding of:
+
+- TCP/IP communication and connection establishment
+
+- Linux file system structure
+
+- Client–server architecture design
+
+- System-level debugging
+
+- Handling connection failures and runtime errors
+
+- Resource management and graceful termination
 
 
-🛠 Compile & Run
-gcc file_explorer.c
-./a.out
+▶️ Compilation & Execution
+Compile:
+- gcc server.c root.c -o server
+- gcc client.c -o client
+
+Run:
+
+Start the server first:
+
+./server <PORTNO>
+Then start the client:
+
+./client <PORTNO> <SERVER_IP_ADDRESS>
+After connection is establishing successfully the client and server are involved in communication...
+
+
